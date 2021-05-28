@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class Register extends Component {
+
+class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: '',
-            email: '',  
+            username: '',  
             password: ''
         };
 
@@ -15,14 +15,30 @@ class Register extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async registerBreederAccount(breeder){
-        console.log(breeder, 'registerBreeder');
-        const response = await axios.post('http://127.0.0.1:8000/register/', breeder)
+    async loginBreederAccount(breeder){
+        console.log(breeder, 'LoginBreederAccount');
+        const response = await axios.post('http://127.0.0.1:8000/login/', breeder)
         this.setState({
-            token: response.data
+            token: response.data.token
         })
-        console.log(this.state, "registerbreederaccount")
+        console.log(this.state, "login")
     }
+
+    async loginBreeder (breederObject) {
+        console.log(breederObject,"login breeder");
+        try {
+            await this.loginBreederAccount(breederObject);
+
+            localStorage.setItem('token', this.state.token);
+            window.location = '/';
+        } catch (ex) {
+            if(ex.response && ex.response.status === 400){
+            }   
+        }
+    }
+
+
+
 
     handleChange(event) {
         this.setState({
@@ -34,12 +50,11 @@ class Register extends Component {
         event.preventDefault();
         const breeder = {
             username: this.state.username,
-            email: this.state.email,
             password: this.state.password
         }
-        this.registerBreederAccount(breeder);
+        this.loginBreeder(breeder);
         this.setState({
-            breedertoken: ''
+            token: breeder
         })
     
     }
@@ -47,15 +62,13 @@ class Register extends Component {
     render() {
         return (
             <div>
-                <h1>Register Page</h1>
+                <h1>Login Page</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Username:</label>
                     <input type="text" name="username" onChange={this.handleChange} value={this.state.username}></input>
-                    <label>Email:</label> 
-                    <input type="text" name="email" onChange={this.handleChange} value={this.state.email}></input>
                     <label>Password:</label> 
                     <input type="text" name="password" onChange={this.handleChange} value={this.state.password}></input>
-                    <input type="submit" value='Register'/>
+                    <input type="submit" value='Login'/>
                    
                 </form>
             </div>
@@ -63,4 +76,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Login;
