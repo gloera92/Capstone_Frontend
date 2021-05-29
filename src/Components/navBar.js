@@ -3,25 +3,39 @@ import { Link } from 'react-router-dom';
 
 
 
-function NavBar() {
+const NavBar =({ breeder }) => {
 
     return (
+        <div>
+            {breeder && <h4>Welcome {breeder.token}</h4>}
         <nav>
             <ul>
-                <Link to='/'>
-                    <li>Home</li>
-                </Link>
-                <Link to='/register'>
-                    <li>Register</li>
-                </Link>
-                <Link to='/login'>
-                    <li>Login</li>
-                </Link>
-                <Link to='/profile'>
-                    <li>Profile</li>
-                </Link>
+                <li>
+                    <Link to='/'>Home</Link>
+                </li>
+                <li>
+                    <Link to='/profile'>Profile</Link>
+                </li>
+                {!breeder &&
+                    <React.Fragment>
+                        <li>
+                            <Link to='/register'>Register</Link>
+                        </li>
+                        <li>
+                            <Link to='/login'>Login</Link>
+                        </li>
+                    </React.Fragment>
+                }
+                {breeder &&
+                    <React.Fragment>
+                        <li>
+                            <Link to='/logout'>Logout</Link>
+                        </li>
+                    </React.Fragment>
+                }
             </ul>
         </nav>
+        </div>
     )
 }
 

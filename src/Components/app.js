@@ -6,6 +6,8 @@ import Profile from './profile';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import Register from './register';
 import Login from './login';
+import Logout from './logout';
+import NotFound from './notFound';
 // import jwtDecode from 'jwt-decode';
 
 
@@ -13,35 +15,50 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            breederAccounts: [],
-            breeders: [],
+            breeder: [],
             dogs: []
         }
     }
 
-    // componentDidMount() {
-    //     const jwt = localStorage.getItem('token');
-    //     try{
-    //         const breeder = jwtDecode(jwt);
-    //         this.setState({
-    //             breeder
-    //         });
-    //     } catch {
+    componentDidMount() {
+        const token = localStorage.getItem('token');
+        try{
+            const breeder =(token);
+            this.setState({
+                breeder
+            });
+            console.log(breeder)
+        } catch {
 
-    //     }
-    // }
+        }
+        
+    }
+
+    
 
     render() {
-       
+       const breeder = this.state.breeder;
         return (
-            <div className="App">
-                <NavBar  />
-                <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/register" exact component={Register}/>
-                    <Route path="/login" exact component={Login} />
-                    <Route path="/profile" exact component={Profile} />
-                </Switch>
+            <div>
+                <NavBar  breeder={breeder}/>
+                <div className="App">
+                    <Switch>
+                        <Route path="/profile" render={props => {
+                            if (!breeder){
+                                return <Redirect to="/login" />;
+                            } else {
+                                return <Profile {...props} breeder={breeder} />
+                            }
+                        }}
+                        />
+                        <Route path="/register" exact component={Register}/>
+                        <Route path="/login" exact component={Login} />
+                        <Route path="/" exact component={Home} />
+                        <Route path="/logout" exact component={Logout} />
+                        <Route path="/not-found" component={NotFound}/>
+                        <Redirect to='/not-found'/>
+                    </Switch>
+                </div>
             </div>
         )
     }
