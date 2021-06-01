@@ -9,7 +9,9 @@ import Login from './login';
 import Logout from './logout';
 import NotFound from './notFound';
 // import jwtDecode from 'jwt-decode';
-
+import axios from 'axios';
+import DogTable from './dogTable';
+import Dogs from './dogs';
 
 class App extends Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class App extends Component {
             breeder: [],
             dogs: []
         }
+
     }
 
     componentDidMount() {
@@ -25,14 +28,42 @@ class App extends Component {
         try{
             const breeder =(token);
             this.setState({
-                breeder
+                breeder,
+                
             });
-            console.log(breeder)
+            console.log(breeder, "component did mount")
         } catch {
 
-        }
-        
+        }  
+        this.getAllDogs()   
     }
+
+
+     getCurrentBreeder(){
+        const response =  axios.get('http://127.0.0.1:8000/login/')
+        this.setState({
+            breeders: response.data
+        })
+        console.log("getAllUsers", response.data);
+    }
+
+   async getAllDogs(){
+       let response = await axios.get('http://127.0.0.1:8000/k9list/');
+       this.setState({
+           dogs: response.data
+       })
+   }
+
+   mapDogs(){
+       return this.state.dogs.map(dog =>
+        <Dogs
+            key={dog.id}
+            dog={dog}
+            />,
+        );
+   }
+
+    
 
     
 
@@ -54,6 +85,7 @@ class App extends Component {
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
                         <Route path="/" exact component={Home} />
+                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
                         <Redirect to='/not-found'/>

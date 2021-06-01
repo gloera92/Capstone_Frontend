@@ -13,8 +13,12 @@ const NavBar =({ breeder }) => {
                 <li>
                     <Link to='/'>Home</Link>
                 </li>
+
                 <li>
                     <Link to='/profile'>Profile</Link>
+                </li>
+                <li>
+                    <Link to='/doglist'>Dogs</Link>
                 </li>
                 {!breeder &&
                     <React.Fragment>

@@ -10,7 +10,10 @@ const Home = () => {
 
 
     return (
-            <div>Home Page</div>
+        <div>
+            {/* <h1>Home page</h1> */}
+            
+            </div>
     )   
 }
 
