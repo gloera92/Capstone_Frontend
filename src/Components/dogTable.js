@@ -2,7 +2,7 @@ import React from 'react'
 
 const DogTable = (props) => {
     return (
-        <table className="table">
+        <table className="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>Id</th>                  

@@ -20,6 +20,7 @@ class App extends Component {
             breeder: [],
             dogs: []
         }
+        console.log(this.state.breeder, "this.state.breeder")
 
     }
 
@@ -35,16 +36,14 @@ class App extends Component {
         } catch {
 
         }  
-        this.getAllDogs()   
+        this.getAllDogs() 
+          
     }
 
 
      getCurrentBreeder(){
-        const response =  axios.get('http://127.0.0.1:8000/login/')
-        this.setState({
-            breeders: response.data
-        })
-        console.log("getAllUsers", response.data);
+        const response =  localStorage.getItem('email');
+        return response
     }
 
    async getAllDogs(){
@@ -78,13 +77,13 @@ class App extends Component {
                             if (!breeder){
                                 return <Redirect to="/login" />;
                             } else {
-                                return <Profile {...props} breeder={breeder} />
+                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} />
                             }
                         }}
                         />
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
-                        <Route path="/" exact component={Home} />
+                        <Route path="/" exact component={Home} getCurrentBreeder={() => this.getCurrentBreeder()}/>
                         <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>

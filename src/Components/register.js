@@ -6,9 +6,9 @@ class Register extends Component {
         super(props);
 
         this.state = {
-            username: '',
             email: '',  
-            password: ''
+            password: '',
+            
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -19,7 +19,9 @@ class Register extends Component {
         console.log(breeder, 'registerBreeder');
         const response = await axios.post('http://127.0.0.1:8000/register/', breeder)
         this.setState({
-            token: response.data
+            token: response.data,
+            email: response.data.email
+            
         })
         console.log(this.state, "registerbreederaccount")
     }
@@ -31,16 +33,18 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
+        debugger;
         event.preventDefault();
         const breeder = {
-            username: this.state.username,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,         
         }
         this.registerBreederAccount(breeder);
         this.setState({
-            breedertoken: ''
+            breedertoken: '',
+            breederemail: ''
         })
+        console.log(breeder, "handle submit")
     
     }
 
@@ -49,8 +53,6 @@ class Register extends Component {
             <div>
                 <h1>Register Page</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type="text" name="username" onChange={this.handleChange} value={this.state.username}></input>
                     <label>Email:</label> 
                     <input type="text" name="email" onChange={this.handleChange} value={this.state.email}></input>
                     <label>Password:</label> 

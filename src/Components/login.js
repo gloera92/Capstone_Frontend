@@ -7,7 +7,7 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: '',  
+            email: '',  
             password: ''
         };
 
@@ -20,7 +20,7 @@ class Login extends Component {
         const response = await axios.post('http://127.0.0.1:8000/login/', breeder)
         this.setState({
             token: response.data.token,
-            username: response.data.username
+            email: response.data.email
         })
         console.log(this.state, "login")
         console.log(response, "username ")
@@ -32,6 +32,7 @@ class Login extends Component {
             await this.loginBreederAccount(breederObject);
 
             localStorage.setItem('token', this.state.token);
+            localStorage.setItem('email', this.state.email)
             window.location = '/';
         } catch (ex) {
             if(ex.response && ex.response.status === 400){
@@ -54,12 +55,13 @@ class Login extends Component {
        
         event.preventDefault();
         const breeder = {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         }
         this.loginBreeder(breeder);
         this.setState({
-            token: breeder
+            token: breeder,
+            email: breeder.email
         })
     
     }
@@ -69,8 +71,8 @@ class Login extends Component {
             <div>
                 <h1>Login Page</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type="text" name="username" onChange={this.handleChange} value={this.state.username}></input>
+                    <label>Email:</label>
+                    <input type="text" name="email" onChange={this.handleChange} value={this.state.email}></input>
                     <label>Password:</label> 
                     <input type="text" name="password" onChange={this.handleChange} value={this.state.password}></input>
                     <input type="submit" value='Login'/>
