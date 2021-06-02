@@ -20,7 +20,7 @@ class Register extends Component {
         const response = await axios.post('http://127.0.0.1:8000/register/', breeder)
         this.setState({
             token: response.data,
-            email: response.data.email
+            
             
         })
         console.log(this.state, "registerbreederaccount")
@@ -33,7 +33,6 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-        debugger;
         event.preventDefault();
         const breeder = {
             email: this.state.email,
@@ -42,7 +41,6 @@ class Register extends Component {
         this.registerBreederAccount(breeder);
         this.setState({
             breedertoken: '',
-            breederemail: ''
         })
         console.log(breeder, "handle submit")
     

@@ -54,9 +54,11 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <h1>Profile Page</h1>
-                <h2>Welcome {this.props.getCurrentBreeder()}</h2>
+                
+                <h1>Profile</h1>
+                <h3>Welcome {this.props.getCurrentBreeder()}</h3>
                 <form onSubmit={this.handleSubmit}>
+                <br></br>
                 <h1>Register Dog</h1>
                     <label htmlFor="name"> Name:</label>
                     <input type="text" id="name" name="name" placeholder="Dogs Name" onChange={this.handleChange} value={this.state.name}></input>

@@ -32,7 +32,7 @@ class App extends Component {
                 breeder,
                 
             });
-            console.log(breeder, "component did mount")
+            console.log("component did mount")
         } catch {
 
         }  
