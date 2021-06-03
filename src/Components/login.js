@@ -20,10 +20,12 @@ class Login extends Component {
         const response = await axios.post('http://127.0.0.1:8000/login/', breeder)
         this.setState({
             token: response.data.token,
-            email: response.data.email
+            email: response.data.email,
+            
         })
+       
         console.log(this.state, "login")
-        console.log(response, "username ")
+        console.log(response, "username")
     }
 
     async loginBreeder (breederObject) {
@@ -61,7 +63,8 @@ class Login extends Component {
         this.loginBreeder(breeder);
         this.setState({
             token: breeder,
-            email: breeder.email
+            email: breeder.email,
+            id: breeder.id
         })
     
     }

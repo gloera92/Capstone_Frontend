@@ -7,7 +7,7 @@ const NavBar =({ breeder }) => {
 
     return (
         <div>
-            {breeder && <h4>Welcome {breeder.token}</h4>}
+            
         <nav>
             <ul>
                 <li>

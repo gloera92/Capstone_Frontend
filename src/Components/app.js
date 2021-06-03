@@ -13,6 +13,7 @@ import axios from 'axios';
 import DogTable from './dogTable';
 import Dogs from './dogs';
 
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -32,18 +33,32 @@ class App extends Component {
                 breeder,
                 
             });
-            console.log("component did mount")
+            console.log(breeder,"component did mount")
         } catch {
-
         }  
-        this.getAllDogs() 
-          
+        this.getCurrentBreederId()
     }
 
 
+    async getCurrentBreederId() {
+        const token = localStorage.getItem('token');
+        axios.get('http://127.0.0.1:8000/profile/', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+
+    
      getCurrentBreeder(){
-        const response =  localStorage.getItem('email');
-        return response
+        const email =  localStorage.getItem('email');      
+        return email
     }
 
    async getAllDogs(){
@@ -77,12 +92,12 @@ class App extends Component {
                             if (!breeder){
                                 return <Redirect to="/login" />;
                             } else {
-                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} />
+                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()} />
                             }
                         }}
                         />
                         <Route path="/register" exact component={Register}/>
-                        <Route path="/login" exact component={Login} />
+                        <Route path="/login" exact component={Login}  />
                         <Route path="/" exact component={Home} getCurrentBreeder={() => this.getCurrentBreeder()}/>
                         <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
                         <Route path="/logout" exact component={Logout} />

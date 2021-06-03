@@ -12,12 +12,16 @@ class Profile extends Component {
             color: '',
             age: '',
             size: '',
-            gender: ''
+            gender: '',
+            user: '',
+            zipcode: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    
 
     async registerDog(dog){
         console.log(dog, 'registerdog');
@@ -42,7 +46,9 @@ class Profile extends Component {
             color: this.state.color,
             age: this.state.age,
             size: this.state.size,
-            gender: this.state.gender
+            gender: this.state.gender,
+            user: this.state.user,
+            zipcode: this.state.zipcode
         }
         this.registerDog(dog);
         this.setState({
@@ -75,6 +81,8 @@ class Profile extends Component {
                     <input type="submit" value='Register Dog'/>
                    
                 </form>
+                
+                
             </div>
         )
     }
