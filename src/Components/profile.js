@@ -14,20 +14,26 @@ class Profile extends Component {
             age: '',
             size: '',
             gender: '',
-            user: `${this.props.getCurrentBreederId()}`,
+            user: `${this.props.user}`,
             zipcode: ''
         };
+        console.log(this.state.user, "user from profile page")
         
-
+        
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     
 
+    
+
     async registerDog(dog){
         console.log(dog, 'registerdog');
-        const response = await axios.post('http://127.0.0.1:8000/k9list/', dog)
+        const token = localStorage.getItem('token');
+        const response = await axios.post('http://127.0.0.1:8000/k9list/', dog, {headers: {
+            'Authorization': `Bearer ${token}`
+        }})
         this.setState({
             dog: response.data
         })
@@ -52,6 +58,7 @@ class Profile extends Component {
             user: this.state.user,
             zipcode: this.state.zipcode
         }
+        console.log(this.user)
         this.registerDog(dog);
         this.setState({
             dog: ''

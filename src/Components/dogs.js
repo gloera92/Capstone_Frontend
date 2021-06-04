@@ -12,6 +12,7 @@ const Dogs = (props) => {
             <td>{props.dog.age}</td>
             <td>{props.dog.size}</td>
             <td>{props.dog.gender}</td>
+            <td>{props.dog.user}</td>
             <td>{props.dog.zipcode}</td>
         </tr>
     </tbody>

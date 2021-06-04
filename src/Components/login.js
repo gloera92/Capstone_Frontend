@@ -17,10 +17,11 @@ class Login extends Component {
 
     async loginBreederAccount(breeder){
         console.log(breeder, 'LoginBreederAccount');
-        const response = await axios.post('http://127.0.0.1:8000/login/', breeder)
+        const response = await axios.post('http://127.0.0.1:8000/login/', breeder) 
         this.setState({
             token: response.data.token,
-            email: response.data.email,           
+            email: response.data.email, 
+                     
         })
        
         console.log(this.state, "login")
@@ -31,7 +32,6 @@ class Login extends Component {
         console.log(breederObject,"login breeder");
         try {
             await this.loginBreederAccount(breederObject);
-
             localStorage.setItem('token', this.state.token);
             localStorage.setItem('email', this.state.email)
             window.location = '/';
@@ -63,7 +63,7 @@ class Login extends Component {
         this.setState({
             token: breeder,
             email: breeder.email,
-            id: breeder.id
+            
         })
     
     }

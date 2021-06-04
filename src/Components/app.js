@@ -18,80 +18,89 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            breeder: [],
+            breeder: '',
             dogs: [],
             user: ''
         }
-    //     console.log(this.state.breeder, "this.state.breeder")
+    console.log(this.state.dogs, "state dogs")
+    console.log(this.state.breeder, "this.state.breeder")
     console.log(this.state.user, "state user")
+    
+}
 
+componentDidMount() {
+    const token = localStorage.getItem('token');
+    this.getCurrentBreederId()
+    
+    try{            
+        const breeder =(token)
+        this.setState({
+            breeder,
+            
+        });           
+        console.log( "component did mount")
+    } catch {
     }
+    this.getAllDogs()
+}
 
-    componentDidMount() {
-        const token = localStorage.getItem('token');
-        const user = this.getCurrentBreederId()
-        try{            
-            const breeder =(token);
-            this.setState({
-                breeder,
-                user
-                
-                                      
-            });
-            console.log( "component did mount")
-        } catch {
+
+
+
+getCurrentBreederId() {
+    const token = localStorage.getItem('token');
+    axios.get('http://127.0.0.1:8000/profile/', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }       
+    })
+    .then((res) => {
+        console.log(res.data, "res data")
+        this.setState({
+            user: res.data.data[0].id
+            
+        })
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+    
+}
+
+
+getCurrentBreeder(){
+    const email =  localStorage.getItem('email');      
+    return email
+}
+
+async getAllDogs(){
+    const token = localStorage.getItem('token');
+    let response = await axios.get('http://127.0.0.1:8000/k9list/', {
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
-    }
+    });
+    this.setState({
+        dogs: response.data
+    })
+}
 
-
-    getCurrentBreederId() {
-        const token = localStorage.getItem('token');
-        axios.get('http://127.0.0.1:8000/profile/', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }       
-        })
-        .then((res) => {
-            console.log(res.data.data[0].id)
-            this.setState({
-                user: res.data.data[0].id
-            })
-            console.log(this.user, "this.user")
-        })
-        .catch((error) => {
-            console.error(error)
-        })
-        
-    }
-
-    
-     getCurrentBreeder(){
-        const email =  localStorage.getItem('email');      
-        return email
-    }
-
-   async getAllDogs(){
-       let response = await axios.get('http://127.0.0.1:8000/k9list/');
-       this.setState({
-           dogs: response.data
-       })
-   }
-
-   mapDogs(){
-       return this.state.dogs.map(dog =>
+mapDogs(){
+    return this.state.dogs.map(dog =>
         <Dogs
-            key={dog.id}
-            dog={dog}
-            />,
+        key={dog.id}
+        dog={dog}
+        />,
         );
-   }
-
+    }
     
-
     
-
+    
+    
+    
     render() {
-       const breeder = this.state.breeder;
+        const user = this.state.user;
+        const breeder = this.state.breeder;
         return (
             <div>
                 <NavBar  breeder={breeder}/>
@@ -101,7 +110,7 @@ class App extends Component {
                             if (!breeder){
                                 return <Redirect to="/login" />;
                             } else {
-                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()} />
+                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>
                             }
                         }}
                         />

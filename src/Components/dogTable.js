@@ -12,6 +12,7 @@ const DogTable = (props) => {
                     <th>Age</th>
                     <th>Size</th>
                     <th>Gender</th>
+                    <th>User</th>
                     <th>Zipcode</th>
                 </tr>      
             </thead>           
