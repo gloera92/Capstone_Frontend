@@ -88,7 +88,7 @@ async getAllDogs(){
 mapDogs(){
     return this.state.dogs.map(dog =>
         <Dogs
-        key={dog.id}
+        key={dog.email}
         dog={dog}
         />,
         );

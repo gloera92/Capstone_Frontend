@@ -5,7 +5,8 @@ const DogTable = (props) => {
         <table className="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>                  
+                    
+                    <th>Id</th>           
                     <th>Name</th>
                     <th>Breed</th>
                     <th>Color</th>

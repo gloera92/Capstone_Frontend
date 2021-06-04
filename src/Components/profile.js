@@ -14,7 +14,7 @@ class Profile extends Component {
             age: '',
             size: '',
             gender: '',
-            user: `${this.props.user}`,
+            user: ``,
             zipcode: ''
         };
         console.log(this.state.user, "user from profile page")
@@ -31,7 +31,7 @@ class Profile extends Component {
     async registerDog(dog){
         console.log(dog, 'registerdog');
         const token = localStorage.getItem('token');
-        const response = await axios.post('http://127.0.0.1:8000/k9list/', dog, {headers: {
+        const response = await axios.post('http://127.0.0.1:8000/k9list/', dog,{headers: {
             'Authorization': `Bearer ${token}`
         }})
         this.setState({
@@ -55,7 +55,7 @@ class Profile extends Component {
             age: this.state.age,
             size: this.state.size,
             gender: this.state.gender,
-            user: this.state.user,
+            user: `${this.props.user}`,
             zipcode: this.state.zipcode
         }
         console.log(this.user)
@@ -86,9 +86,7 @@ class Profile extends Component {
                     <label htmlFor="size">Size:</label> 
                     <input type="text" id="size" name="size" placeholder="Dogs Size" onChange={this.handleChange} value={this.state.size}></input>
                     <label htmlFor="gender">Gender:</label> 
-                    <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>
-                    <label htmlFor="breeder">Breeder:</label> 
-                    <input type="text" id="breeder" name="breeder" placeholder="Dogs Breeder" onChange={this.handleChange} value={this.state.user}></input>
+                    <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>    
                     <label htmlFor="zipcode">Zipcode:</label> 
                     <input type="text" id="zipcode" name="zipcode" placeholder="Dogs Zipcode" onChange={this.handleChange} value={this.state.zipcode}></input>
                     <input type="submit" value='Register Dog'/>
