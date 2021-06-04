@@ -20,8 +20,7 @@ class Login extends Component {
         const response = await axios.post('http://127.0.0.1:8000/login/', breeder)
         this.setState({
             token: response.data.token,
-            email: response.data.email,
-            
+            email: response.data.email,           
         })
        
         console.log(this.state, "login")

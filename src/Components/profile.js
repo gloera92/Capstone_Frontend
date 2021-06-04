@@ -5,6 +5,7 @@ import './profile.css';
 class Profile extends Component {
     constructor(props) {
         super(props);
+        
 
         this.state = {
             name: '',
@@ -13,9 +14,10 @@ class Profile extends Component {
             age: '',
             size: '',
             gender: '',
-            user: '',
+            user: `${this.props.getCurrentBreederId()}`,
             zipcode: ''
         };
+        
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,10 +80,13 @@ class Profile extends Component {
                     <input type="text" id="size" name="size" placeholder="Dogs Size" onChange={this.handleChange} value={this.state.size}></input>
                     <label htmlFor="gender">Gender:</label> 
                     <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>
+                    <label htmlFor="breeder">Breeder:</label> 
+                    <input type="text" id="breeder" name="breeder" placeholder="Dogs Breeder" onChange={this.handleChange} value={this.state.user}></input>
+                    <label htmlFor="zipcode">Zipcode:</label> 
+                    <input type="text" id="zipcode" name="zipcode" placeholder="Dogs Zipcode" onChange={this.handleChange} value={this.state.zipcode}></input>
                     <input type="submit" value='Register Dog'/>
                    
                 </form>
-                
                 
             </div>
         )
