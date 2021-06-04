@@ -11,7 +11,7 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className="home">
             
             <h1>K9 Find</h1>
             

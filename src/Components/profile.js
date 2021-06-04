@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './profile.css';
 
+
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -68,11 +69,11 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div className="profile">
                 
                 <h1>Profile</h1>
                 <h3>Welcome {this.props.getCurrentBreeder()}</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form  onSubmit={this.handleSubmit}>
                 <br></br>
                 <h1>Register Dog</h1>
                     <label htmlFor="name"> Name:</label>

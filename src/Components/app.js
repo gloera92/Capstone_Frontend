@@ -11,7 +11,7 @@ import NotFound from './notFound';
 // import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import DogTable from './dogTable';
-import Dogs from './dogs';
+import Dogs from './dogList';
 
 
 class App extends Component {
