@@ -1,14 +1,15 @@
 import React from 'react'
-import './dogList.css';
+// import './dogList.css';
 
 const DogTable = (props) => {
     return (
         <div classname="dogtable">
             <table className="table table-dark table-striped">
                 <thead>
-                    <tr>      
-                        <th>Id</th>           
-                        <th>Name</th>
+                    <tr>
+            
+                        <th>Id</th>  
+                        <th>Name</th>                            
                         <th>Breed</th>
                         <th>Color</th>
                         <th>Age</th>
@@ -20,8 +21,12 @@ const DogTable = (props) => {
                 </thead>           
                     {props.mapDogs()}
             </table>
+               
         </div>
     )
 }
 
 export default DogTable;
+
+
+

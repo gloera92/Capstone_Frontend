@@ -13,3 +13,12 @@
         margin-bottom: 2em;
     }
     
+    div#root{
+        border-radius: 5px;
+        background-color: #fffefe;
+        height: 100%;
+        background-image: url('../Components/images/dog1.jpg');
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size: cover;
+      }

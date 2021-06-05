@@ -1,0 +1,43 @@
+
+  
+  .nav-item {
+    display: inline-block;
+    font-weight: 700;
+    padding-right: 25px;
+    
+  }
+  
+  .nav-item header {
+    padding: 10px 20px;
+    display: inline-block;
+  }
+  
+  .nav-item header:hover {
+    opacity: 0.8;
+  }
+  
+  .nav-item .active {
+    background: #f2f3f2;
+  }
+  
+  .transparent {
+    background: #0000002e;
+    margin-bottom: -40px;
+    border-bottom: 1px solid #ffffff1f;
+    position: relative;
+  }
+  
+  .pill-nav a {
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 5px;
+  }
+
+  .pill-nav a:hover {
+    background-color: #ddd;
+    color: black;
+  }

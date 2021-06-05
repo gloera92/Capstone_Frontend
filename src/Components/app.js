@@ -12,6 +12,8 @@ import NotFound from './notFound';
 import axios from 'axios';
 import DogTable from './dogTable';
 import Dogs from './dogList';
+import RegisterDog from './registerDog';
+
 
 
 class App extends Component {
@@ -93,10 +95,10 @@ mapDogs(){
         />,
         );
     }
-    
-    
-    
-    
+
+
+
+      
     
     render() {
         const user = this.state.user;
@@ -114,10 +116,11 @@ mapDogs(){
                             }
                         }}
                         />
+                        <Route path="/" exact component={Home} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()}/>
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
-                        <Route path="/" exact component={Home} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()}/>
-                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
+                        <Route path="/registerDog" exact component={RegisterDog}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>
+                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />           
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
                         <Redirect to='/not-found'/>

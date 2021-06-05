@@ -3,7 +3,7 @@ div.App {
     width:auto;
     box-sizing: border-box;
 }
-div.home {
+/* div.home {
     border-radius: 5px;
     background-color: #fffefe;
     height: 100%;
@@ -11,6 +11,6 @@ div.home {
     background-repeat: no-repeat;
     background-position:center;
     background-size: cover;
-  }
+  } */
 
   

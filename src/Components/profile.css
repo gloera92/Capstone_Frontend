@@ -28,13 +28,13 @@ input[type=submit]:hover {
   background-color: #d1cccc;
 }
 
-.profile {
+/* .profile {
   background-image: url('../Components/images/dog1.jpg');
   background-repeat: no-repeat;
   background-attachment:local;
   background-position:center;
   background-size: cover;
-}
+} */
 
 
 
