@@ -1,29 +1,38 @@
-import React from 'react';
-import './dogList.css';
+export const COLUMNS = [
+    {
+        Header: 'Id',
+        accessor: 'id',
+    },
+    {
+        Header: 'Name',
+        accessor: 'name',
+    },
+    {
+        Header: 'Breed',
+        accessor: 'breed',
+    },
+    {
+        Header: 'Color',
+        accessor: 'color',
+    },
+    {
+        Header: 'Age',
+        accessor: 'age',
+    },
+    {
+        Header: 'Size',
+        accessor: 'size',
+    },
+    {
+        Header: 'Gender',
+        accessor: 'gender',
+    },
+    {
+        Header: 'Zipcode',
+        accessor: 'zipcode',
+    },
+]
 
-const Dogs = (props) => {
-    return (  
-        
-
-        <tbody>
-            <tr>
-                <td>{props.dog.id}</td>
-                <td>{props.dog.name}</td>
-                <td>{props.dog.breed}</td>
-                <td>{props.dog.color}</td>
-                <td>{props.dog.age}</td>
-                <td>{props.dog.size}</td>
-                <td>{props.dog.gender}</td>
-                <td>{props.dog.user}</td>
-                <td>{props.dog.zipcode}</td>
-            </tr>
-        </tbody>
-                
-                
-    );
-}
-            
-export default Dogs;
             
 
 

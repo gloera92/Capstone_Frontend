@@ -148,7 +148,7 @@ filterDogs(){
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
                         <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
-                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
+                        <Route path="/dogTable" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs} getAllDogs={() => this.getAllDogs()} />} />
                         <Route path="/dogMap" render={props => <DogMap {...props}/>} />           
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
