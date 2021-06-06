@@ -1,10 +1,9 @@
 import React from 'react';
-import FilePlayer from 'react-player/file';
 import{GoogleMap, useLoadScript, Marker, InfoWindow} from "@react-google-maps/api";
-import {formatRelative} from "date-fns";
 
 
-const libraries = ["places"]
+
+const libraries = ["places"];
 const mapContainerStyle= {
     width: "100vw",
     height: "100vh",
@@ -16,18 +15,56 @@ const center = {
 };
 
 
+
 export default function DogMap() {
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: '',
+        googleMapsApiKey: 'AIzaSyCAFSMzPFaMorkiyNVryeFjnPMdfa9gwGQ',
         libraries,
     });
+    const [markers, setMarkers] = React.useState([]);
+
+    const onMapClick = React.useCallback((event) => {
+        setMarkers((current) => [
+            ...current,
+            {
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng(),
+                time: new Date(),
+            },
+        ]);
+    }, []);
 
     if (loadError) return "Error Loading Maps";
     if (!isLoaded) return "Loading Maps";
 
+    
+
     return (
         <div>
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center}></GoogleMap>
+
+            <h1>Dogs {" "}
+                <span role="img" aria-label="dog">
+                    🐕‍🦺
+                </span> 
+            </h1>  
+            <GoogleMap mapContainerStyle=
+            {mapContainerStyle} 
+            zoom={13} 
+            center={center}
+            onClick={onMapClick}
+            >
+                {markers.map(marker => <Marker 
+                key={marker.time.toISOString()} 
+                position={{lat:marker.lat, lng:marker.lng}}
+                icon={{
+                    url: './dog.jpg',
+                    scaledSize: new window.google.maps.Size(30,30),
+                    origin: new window.google.maps.Point(0,0),
+                    anchor: new window.google.maps.Point(15,15),
+                }}
+                
+                />)}      
+            </GoogleMap>
         </div>
     );
 }
