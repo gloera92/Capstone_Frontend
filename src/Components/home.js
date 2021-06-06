@@ -11,6 +11,7 @@ const Home = () => {
         <div className="home">
             
             <h1>K9 Find</h1>
+            
 
             <h2>Videos to help get started!</h2>
             <ReactPlayer  

@@ -13,6 +13,9 @@ import axios from 'axios';
 import DogTable from './dogTable';
 import Dogs from './dogList';
 import RegisterDog from './registerDog';
+import DogMap from './findDogs';
+
+
 
 
 
@@ -21,18 +24,22 @@ class App extends Component {
         super(props);
         this.state = {
             breeder: '',
-            dogs: [],
-            user: ''
+            dogs: '',
+            user: '',
+            filteredDogs: [],
         }
     console.log(this.state.dogs, "state dogs")
     console.log(this.state.breeder, "this.state.breeder")
-    console.log(this.state.user, "state user")
+    console.log(this.user, "state user")
     
 }
 
 componentDidMount() {
     const token = localStorage.getItem('token');
     this.getCurrentBreederId()
+    this.getAllDogs()
+    this.filterDogs.bind(this)
+    
     
     try{            
         const breeder =(token)
@@ -44,6 +51,8 @@ componentDidMount() {
     } catch {
     }
     this.getAllDogs()
+    this.filterDogs.bind(this)
+    
 }
 
 
@@ -92,19 +101,38 @@ mapDogs(){
         <Dogs
         key={dog.email}
         dog={dog}
+        deleteDogs={(id) => this.deleteDogs(id)}
         />,
         );
     }
 
-
-
-      
+filterDogs(){
+    let dog = this.state.dogs;
+    let i = 0;
+    let filteredDogs = this.state.dogs.filter((dog) =>{
+        if (this.state.dogs[i].user === this.state.user){
+            i++
+            return true;
+        }
+        else{
+            i++
+            return false;
+        }
+    })
+    this.setState({
+        filteredDogs : filteredDogs
+    })
+    console.log('filteredDogs',this.state.filteredDogs)
+    }
     
+     
     render() {
         const user = this.state.user;
+        console.log(user, "render user")
         const breeder = this.state.breeder;
         return (
             <div>
+                
                 <NavBar  breeder={breeder}/>
                 <div className="App">
                     <Switch>
@@ -112,15 +140,16 @@ mapDogs(){
                             if (!breeder){
                                 return <Redirect to="/login" />;
                             } else {
-                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>
+                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()}  user={user} filterDogs={() => this.filterDogs.bind(this)} filteredDogs={this.state.filteredDogs} getAllDogs={() => this.getAllDogs()} mapDogs={() => this.mapDogs()} />
                             }
                         }}
                         />
                         <Route path="/" exact component={Home} getCurrentBreeder={() => this.getCurrentBreeder()} getCurrentBreederId={() => this.getCurrentBreederId()}/>
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
-                        <Route path="/registerDog" exact component={RegisterDog}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>
-                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />           
+                        <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
+                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
+                        <Route path="/dogMap" render={props => <DogMap {...props}/>} />           
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
                         <Redirect to='/not-found'/>

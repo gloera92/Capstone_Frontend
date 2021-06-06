@@ -19,11 +19,12 @@ const Dogs = (props) => {
             </tr>
         </tbody>
                 
-        
+                
     );
 }
-
+            
 export default Dogs;
+            
 
 
 

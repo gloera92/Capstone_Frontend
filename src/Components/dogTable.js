@@ -3,11 +3,11 @@ import React from 'react'
 
 const DogTable = (props) => {
     return (
-        <div classname="dogtable">
+        <div className="dogTable">
+
             <table className="table table-dark table-striped">
                 <thead>
                     <tr>
-            
                         <th>Id</th>  
                         <th>Name</th>                            
                         <th>Breed</th>
@@ -21,8 +21,9 @@ const DogTable = (props) => {
                 </thead>           
                     {props.mapDogs()}
             </table>
-               
         </div>
+               
+        
     )
 }
 

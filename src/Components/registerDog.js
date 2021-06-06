@@ -18,7 +18,8 @@ class RegisterDog extends Component {
             user: ``,
             zipcode: ''
         };
-        console.log(this.state.user, "user from profile page")
+        
+        console.log(this.props.user, "user from register dog page")
         
         
         this.handleChange = this.handleChange.bind(this);
@@ -86,7 +87,7 @@ class RegisterDog extends Component {
                     <label htmlFor="size">Size:</label> 
                     <input type="text" id="size" name="size" placeholder="Dogs Size" onChange={this.handleChange} value={this.state.size}></input>
                     <label htmlFor="gender">Gender:</label> 
-                    <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>    
+                    <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>   
                     <label htmlFor="zipcode">Zipcode:</label> 
                     <input type="text" id="zipcode" name="zipcode" placeholder="Dogs Zipcode" onChange={this.handleChange} value={this.state.zipcode}></input>
                     <input type="submit" value='Register Dog'/>
