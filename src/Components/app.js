@@ -11,10 +11,9 @@ import NotFound from './notFound';
 // import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import DogTable from './dogTable';
-import Dogs from './dogList';
 import RegisterDog from './registerDog';
 import DogMap from './findDogs';
-
+import Dogs from './dogList';
 
 
 
@@ -124,6 +123,8 @@ filterDogs(){
     })
     console.log('filteredDogs',this.state.filteredDogs)
     }
+
+
     
      
     render() {
@@ -148,7 +149,7 @@ filterDogs(){
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
                         <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
-                        <Route path="/dogTable" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs} getAllDogs={() => this.getAllDogs()} />} />
+                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
                         <Route path="/dogMap" render={props => <DogMap {...props}/>} />           
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
