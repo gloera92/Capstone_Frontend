@@ -16,7 +16,8 @@ class RegisterDog extends Component {
             size: '',
             gender: '',
             user: ``,
-            zipcode: ''
+            zipcode: '',
+            cost: '',
         };
         
         console.log(this.props.user, "user from register dog page")
@@ -58,7 +59,8 @@ class RegisterDog extends Component {
             size: this.state.size,
             gender: this.state.gender,
             user: `${this.props.user}`,
-            zipcode: this.state.zipcode
+            zipcode: this.state.zipcode,
+            cost: this.state.cost
         }
         console.log(this.user)
         this.registerDog(dog);
@@ -90,6 +92,8 @@ class RegisterDog extends Component {
                     <input type="text" id="gender" name="gender" placeholder="Dogs Gender (Male or Female)" onChange={this.handleChange} value={this.state.gender}></input>   
                     <label htmlFor="zipcode">Zipcode:</label> 
                     <input type="text" id="zipcode" name="zipcode" placeholder="Dogs Zipcode" onChange={this.handleChange} value={this.state.zipcode}></input>
+                    <label htmlFor="cost">Cost:</label> 
+                    <input type="text" id="cost" name="cost" placeholder="Cost for Breeding" onChange={this.handleChange} value={this.state.cost}></input>
                     <input type="submit" value='Register Dog'/>
                    
                 </form>

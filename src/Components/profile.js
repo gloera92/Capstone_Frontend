@@ -43,6 +43,7 @@ class Profile extends Component {
                                         <th>Size</th>
                                         <th>Gender</th>
                                         <th>Zipcode</th>
+                                        <th>Cost</th>
                                         <th>Delete Dog</th>
                                         
                                     </tr>
@@ -58,6 +59,7 @@ class Profile extends Component {
                                         <td>{dog.size}</td>
                                         <td>{dog.gender}</td>
                                         <td>{dog.zipcode}</td>
+                                        <td>{dog.cost}</td>
                                         <td><button onClick={() => this.deleteDog(dog.id)} >Delete</button></td>
                                         </tr>
                                     </tbody>

@@ -45,6 +45,11 @@ export const DogList = [
         dataIndex: "zipcode",
         key: "zipcode"
       },
+      {
+        title: "Cost",
+        dataIndex: "cost",
+        key: "cost"
+      },
   ];
   
 
