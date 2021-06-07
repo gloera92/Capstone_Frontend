@@ -143,7 +143,7 @@ filterDogs(){
                             if (!breeder){
                                 return <Redirect to="/login" />;
                             } else {
-                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()}  user={user} filterDogs={() => this.filterDogs.bind(this)} filteredDogs={this.state.filteredDogs} getAllDogs={() => this.getAllDogs()} mapDogs={() => this.mapDogs()} />
+                                return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()}  user={user} filterDogs={() => this.filterDogs.bind(this)} filteredDogs={this.state.filteredDogs} getAllDogs={() => this.getAllDogs()} mapDogs={() => this.mapDogs()}  />
                             }
                         }}
                         />
@@ -151,7 +151,7 @@ filterDogs(){
                         <Route path="/register" exact component={Register}/>
                         <Route path="/login" exact component={Login} />
                         <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
-                        <Route path="/doglist" render={props => <DogTable {...props} mapDogs={() => this.mapDogs()} dogs={this.state.dogs}/>} />
+                        <Route path="/dogList" render={props => <DogTable {...props}  getAllDogs={() => this.getAllDogs()} mapDogs={() => this.mapDogs()}/>} />
                         <Route path="/dogMap" render={props => <DogMap {...props}/>} />           
                         <Route path="/logout" exact component={Logout} />
                         <Route path="/not-found" component={NotFound}/>
