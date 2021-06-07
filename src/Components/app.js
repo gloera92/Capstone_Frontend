@@ -101,7 +101,9 @@ mapDogs(){
         key={dog.email}
         dog={dog}
         deleteDogs={(id) => this.deleteDogs(id)}
+        getAllDogs={() => this.getAllDogs()}
         />,
+        
         );
     }
 
