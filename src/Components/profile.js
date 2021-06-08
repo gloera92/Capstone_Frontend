@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './profile.css';
 import axios from 'axios';
 
+
+
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -9,8 +11,10 @@ class Profile extends Component {
 
         this.state = {
             user: ``,
+            file: null
             
         };
+        this.handleChange = this.handleChange.bind(this)
         console.log(this.props.user, "propsuser")
         this.props.filterDogs()
     }
@@ -19,6 +23,14 @@ class Profile extends Component {
         await axios.delete('http://127.0.0.1:8000/k9detail/'+id+'/');
         this.props.getAllDogs();  
     }
+
+    handleChange(event) {
+        this.setState({
+          file: URL.createObjectURL(event.target.files[0])
+        })
+      }
+
+      
     
     
 
@@ -44,7 +56,12 @@ class Profile extends Component {
                                         <th>Gender</th>
                                         <th>Zipcode</th>
                                         <th>Cost</th>
+                                        <th>Dog Photo
+                                       
+                                        </th>
                                         <th>Delete Dog</th>
+
+                                        
                                         
                                     </tr>
                                     </thead>
@@ -60,7 +77,9 @@ class Profile extends Component {
                                         <td>{dog.gender}</td>
                                         <td>{dog.zipcode}</td>
                                         <td>{dog.cost}</td>
-                                        <td><button onClick={() => this.deleteDog(dog.id)} >Delete</button></td>
+                                            <td> <input type="file"  onChange={this.handleChange}/> <img src={this.state.file}/></td>
+                                            
+                                        <td><button  onClick={() => this.deleteDog(dog.id)} >Delete</button></td>
                                         </tr>
                                     </tbody>
                                     ))}

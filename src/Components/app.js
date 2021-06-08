@@ -38,7 +38,6 @@ componentDidMount() {
     this.getCurrentBreederId();
     this.getAllDogs();
     this.filterDogs.bind(this);
-
     
     try{            
         const breeder =(token)
@@ -51,6 +50,7 @@ componentDidMount() {
     }
     
     this.filterDogs.bind(this)
+    
     
 }
 
@@ -76,6 +76,16 @@ getCurrentBreederId() {
     })
     
 }
+
+async getZipCode(zipcode) {
+    let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=+AR'+zipcode+'&key=AIzaSyCAFSMzPFaMorkiyNVryeFjnPMdfa9gwGQ')
+    
+    this.setState({
+        dogs: response.data
+    })
+    console.log(this.dogs, "getzipcode data")
+}
+
 
 
 getCurrentBreeder(){
@@ -150,7 +160,7 @@ filterDogs(){
                                 if (!breeder){
                                     return <Redirect to="/login" />;
                                 } else {
-                                    return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()}  user={user} filterDogs={() => this.filterDogs.bind(this)} filteredDogs={this.state.filteredDogs} getAllDogs={() => this.getAllDogs()}   />
+                                    return <Profile {...props} breeder={breeder} getCurrentBreeder={() => this.getCurrentBreeder()}  user={user} filterDogs={() => this.filterDogs.bind(this)} filteredDogs={this.state.filteredDogs} getAllDogs={() => this.getAllDogs()} getZipCode={() => this.getZipCode.bind(this)}  />
                                 }
                             }}
                             />
@@ -159,7 +169,7 @@ filterDogs(){
                             <Route path="/login" exact component={Login} />
                             <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
                             <Route path="/dogList" render={props => <DogTable {...props}  getAllDogs={() => this.getAllDogs()}   dogs={dogs}/>}  />
-                            <Route path="/dogMap" render={props => <DogMap {...props}/>} />         
+                            <Route path="/dogMap" render={props => <DogMap {...props}  getZipCode={() => this.getZipCode.bind(this)} dogs={dogs}/>} />                                  
                             <Route path="/logout" exact component={Logout} />
                             <Route path="/not-found" component={NotFound}/>
                             <Redirect to='/not-found'/>

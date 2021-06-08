@@ -16,7 +16,7 @@ const NavBar =({ breeder }) => {
                         <div className="nav-item"><NavLink to='/dogList'>Dogs</NavLink></div>
                         <div className="nav-item"><NavLink to='/registerDog'>Register Dog</NavLink></div>
                         <div className="nav-item"><NavLink to='/dogMap'>Dog Map</NavLink></div>
-                        <div className="nav-item"><NavLink to='/logout'>Logout</NavLink></div>
+                        <div className="nav-item"><NavLink to='/logout'>Logout</NavLink></div>                       
                     </React.Fragment>} 
                 {!breeder &&
                     <React.Fragment>
