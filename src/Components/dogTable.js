@@ -22,8 +22,8 @@ const fetchUsers = async () => {
 
 
 async function Message(){
-    const accountSid = 'ACbd4a558c3ef90bca8af34796fe8373ec';
-    const authToken = '6938c039f4cac91fe2ef99757c329022';
+    const accountSid = '';
+    const authToken = '';
     await(axios.post("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json", qs.stringify({
   Body: 'Would you like to breed dogs?',
   From: "+13158732466",
@@ -66,7 +66,7 @@ export default function DogTable() {
         onChange={(e) => setSearchVal(e.target.value)}
         placeholder="Search"
         enterButton
-        style={{
+        style={{  
           position: "sticky",
           top: "0",
           left: "0",
@@ -82,6 +82,10 @@ export default function DogTable() {
         columns={DogList}
         loading={loading}
         pagination={false}
+        style={{
+            backgroundColor: "grey",
+            color: "black"
+        }}
       />
     </>
   );

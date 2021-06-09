@@ -13,8 +13,10 @@ import axios from 'axios';
 import DogTable from './dogTable';
 import RegisterDog from './registerDog';
 import DogMap from './findDogs';
+import LiterList from './literList';
 // import Dogs from './dogList';
-
+import ProductDisplay from './checkout';
+import Checkout from './checkout';
 
 
 
@@ -26,6 +28,7 @@ class App extends Component {
             dogs: '',
             user: '',
             filteredDogs: [],
+            puppies: []
         }
     console.log(this.state.dogs, "state dogs")
     console.log(this.state.breeder, "this.state.breeder")
@@ -117,6 +120,14 @@ async getAllDogs(){
 //     }
 
 
+    async getPuppies(){
+    let response = await axios.get('http://127.0.0.1:8000/literlist/');
+    this.setState({
+        puppies: response.data
+    })
+    
+}
+
 
 
 
@@ -150,6 +161,7 @@ filterDogs(){
         console.log(user, "render user")
         const breeder = this.state.breeder;
         const dogs = this.state.dogs;
+        const puppies = this.state.puppies;
             return (
                 <div>
                     
@@ -169,7 +181,9 @@ filterDogs(){
                             <Route path="/login" exact component={Login} />
                             <Route path="/registerDog" render={props => <RegisterDog {...props}  getCurrentBreederId={() => this.getCurrentBreederId()}  user={user}/>}/>
                             <Route path="/dogList" render={props => <DogTable {...props}  getAllDogs={() => this.getAllDogs()}   dogs={dogs}/>}  />
-                            <Route path="/dogMap" render={props => <DogMap {...props}  getZipCode={() => this.getZipCode.bind(this)} dogs={dogs}/>} />                                  
+                            <Route path="/dogMap" render={props => <DogMap {...props}  getZipCode={() => this.getZipCode.bind(this)} dogs={dogs}/>} /> 
+                            <Route path="/literList" render={props => <LiterList {...props}  puppies={this.state.puppies} getPuppies={() => this.getPuppies()} />} />   
+                            <Route path="/checkout" exact component={Checkout} />                            
                             <Route path="/logout" exact component={Logout} />
                             <Route path="/not-found" component={NotFound}/>
                             <Redirect to='/not-found'/>

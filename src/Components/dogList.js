@@ -36,11 +36,6 @@ export const DogList = [
         key: "gender"
       },
       {
-        title: "User",
-        dataIndex: "user",
-        key: "user"
-      },
-      {
         title: "Zipcode",
         dataIndex: "zipcode",
         key: "zipcode"

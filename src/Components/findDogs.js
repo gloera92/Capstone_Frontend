@@ -103,27 +103,37 @@ export default function DogMap() {
                 }}
                 onClick={() => {
                     setSelected(marker);
+                    
                 }}
-
                 />)}
                         <MarkerClusterer options={options}>
                                     {(clusterer) =>
                                     locations.map((location) => (
-                                <Marker key={createKey(location)} 
-                                position={location} 
-                                clusterer={clusterer}
-                            />
-                        ))
-                    }
+                                        <Marker key={createKey(location)} 
+                                        icon={{
+                                            url: './dog.jpg',
+                                            scaledSize: new window.google.maps.Size(30,30),
+                                            origin: new window.google.maps.Point(0,0),
+                                            anchor: new window.google.maps.Point(15,15), }} 
+                                            position={location} 
+                                            clusterer={clusterer}
+                                            onClick={() => {
+                                                setSelected(location);
+                                                
+                                            }}
+                                            
+                                            />
+                                            ))}
+                            
                         </MarkerClusterer>     
                 {selected ? (
-                                        <InfoWindow position={{lat: selected.lat, lng: selected.lng}}>
-                                                <div>
-                                                    <h2> Dog Info</h2>
-                                                    <p> Nancy, Black and White, Lab, Medium, 5</p>
-                                                </div>
-                                        </InfoWindow>
-                                        ) : null}
+                            <InfoWindow position={{lat: selected.lat, lng: selected.lng}}>
+                            <div>
+                            <h2> Dog Info</h2>
+                            <p> Nancy, Black and White, Lab, Medium, 5</p>
+                            </div>
+                            </InfoWindow>
+                            ) : null}
             </GoogleMap>
         </div>
     );
