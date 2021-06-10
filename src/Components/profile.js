@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './profile.css';
 import axios from 'axios';
-
+import Rating from './rating';
 
 
 class Profile extends Component {
