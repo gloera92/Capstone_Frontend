@@ -1,0 +1,17 @@
+
+
+input[type="radio" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+    display: none;
+}
+
+.dog {
+    cursor: pointer;
+    transition: color 200ms;
+}

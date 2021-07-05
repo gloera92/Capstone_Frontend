@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Table, Input, message } from "antd";
 import axios from "axios";
-import { DogList } from "./dogList";
+import { DogList } from "../Components/DogList/dogList";
 import { useTableSearch } from "./tableSearch";
 // import Message from './messaging';
-
+import StarRating from './rating';
 
 
 const qs = require('qs')
@@ -22,8 +22,8 @@ const fetchUsers = async () => {
 
 
 async function Message(){
-    const accountSid = '';
-    const authToken = '';
+    const accountSid = 'ACbd4a558c3ef90bca8af34796fe8373ec';
+    const authToken = 'dbbd93ccb29646dd5d4d333999fc266a';
     await(axios.post("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json", qs.stringify({
   Body: 'Would you like to breed dogs?',
   From: "+13158732466",
@@ -76,10 +76,11 @@ export default function DogTable() {
       />
       <br /> <br />
       <button onClick={Message}>Message owner!</button>
+      {/* <StarRating/> */}
       <Table
         rowKey="name"
         dataSource={filteredData}
-        columns={DogList}
+        columns={DogList} 
         loading={loading}
         pagination={false}
         style={{

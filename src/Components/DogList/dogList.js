@@ -1,6 +1,3 @@
-
-
-
 export const DogList = [
     {
       title: "Id",
@@ -46,6 +43,11 @@ export const DogList = [
         title: "Cost",
         dataIndex: "cost",
         key: "cost"
+      },
+      {
+        title: "Rating",
+        dataIndex: "rating",
+        key: "rating"
       },
   ];
   

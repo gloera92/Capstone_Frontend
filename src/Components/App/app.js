@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import "./app.css";
-import Home from './home';
-import NavBar from './navBar';
-import Profile from './profile';
+import Home from "../Home/home";
+import NavBar from '../NavBar/navBar';
+import Profile from '../Profile/profile';
 import { Switch, Route, Redirect} from 'react-router-dom';
-import Register from './register';
-import Login from './login';
-import Logout from './logout';
-import NotFound from './notFound';
+import Register from '../register';
+import Login from '../login';
+import Logout from '../logout';
+import NotFound from '../notFound';
 // import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import DogTable from './dogTable';
-import RegisterDog from './registerDog';
-import DogMap from './findDogs';
-import LiterList from './literList';
+import DogTable from '../dogTable';
+import RegisterDog from '../registerDog';
+import DogMap from '../findDogs';
+import LiterList from '../literList';
 // import Dogs from './dogList';
-import ProductDisplay from './checkout';
-import Checkout from './checkout';
+import ProductDisplay from '../checkout';
+import Checkout from '../checkout';
 
 
 

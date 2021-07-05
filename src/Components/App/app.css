@@ -17,8 +17,11 @@
         border-radius: 5px;
         background-color: #fffefe;
         height: 100%;
-        background-image: url('../Components/images/dog2.jpg');
+        background-image: url('../images/dog2.jpg');
         background-repeat: no-repeat;
         background-position:center;
         background-size: cover;
       }
+      
+
+      
