@@ -8,16 +8,12 @@ import Register from '../register';
 import Login from '../login';
 import Logout from '../logout';
 import NotFound from '../notFound';
-// import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import DogTable from '../dogTable';
 import RegisterDog from '../registerDog';
 import DogMap from '../findDogs';
 import LiterList from '../literList';
-// import Dogs from './dogList';
-import ProductDisplay from '../checkout';
 import Checkout from '../checkout';
-
 
 
 class App extends Component {
@@ -35,6 +31,7 @@ class App extends Component {
     console.log(this.user, "state user")
     
 }
+
 
 componentDidMount() {
     const token = localStorage.getItem('token');
@@ -58,8 +55,6 @@ componentDidMount() {
 }
 
 
-
-
 getCurrentBreederId() {
     const token = localStorage.getItem('token');
     axios.get('http://127.0.0.1:8000/profile/', {
@@ -80,15 +75,14 @@ getCurrentBreederId() {
     
 }
 
+
 async getZipCode(zipcode) {
-    let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=+AR'+zipcode+'&key=AIzaSyCAFSMzPFaMorkiyNVryeFjnPMdfa9gwGQ')
-    
+    let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=+AR'+zipcode+//api key here)   
     this.setState({
         dogs: response.data
     })
     console.log(this.dogs, "getzipcode data")
 }
-
 
 
 getCurrentBreeder(){
@@ -108,29 +102,13 @@ async getAllDogs(){
     })
 }
 
-// mapDogs(){
-//     return this.state.dogs.map(dog =>
-//         <Dogs
-//         key={dog.id}
-//         dog={dog}
-//         deleteDogs={(id) => this.deleteDogs(id)}
-//         />,
-        
-//         );
-//     }
-
-
-    async getPuppies(){
+async getPuppies(){
     let response = await axios.get('http://127.0.0.1:8000/literlist/');
     this.setState({
         puppies: response.data
     })
     
 }
-
-
-
-
 
 filterDogs(){
     let dog = this.state.dogs;
@@ -149,12 +127,8 @@ filterDogs(){
         filteredDogs : filteredDogs
     })
     console.log('filteredDogs',this.state.filteredDogs)
-    }
+}
 
-    
-
-
-    
      
     render() {
         const user = this.state.user;

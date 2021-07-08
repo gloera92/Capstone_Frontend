@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Table, Input, message } from "antd";
+import { Table, Input} from "antd";
 import axios from "axios";
 import { DogList } from "../Components/DogList/dogList";
 import { useTableSearch } from "./tableSearch";
-// import Message from './messaging';
 import StarRating from './rating';
 
 
@@ -22,35 +21,20 @@ const fetchUsers = async () => {
 
 
 async function Message(){
-    const accountSid = 'ACbd4a558c3ef90bca8af34796fe8373ec';
-    const authToken = 'dbbd93ccb29646dd5d4d333999fc266a';
+    const accountSid = ''; //twilio Sid here
+    const authToken = '';  //twilio authToken here
     await(axios.post("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json", qs.stringify({
   Body: 'Would you like to breed dogs?',
   From: "+13158732466",
   To: "+17607139446"
-}), {
+  }), 
+  {
   auth: {
     username: accountSid,
     password: authToken
   }
-}));
+  }));
 }
-
-
-
-
-//     Body: "Would you like to breed?",
-//     From: '+13158732466',
-//     To: '+17607139446'
-//     }), {
-//     auth: {
-//     username: accountSid,
-//     password: authToken
-//   }
-// }));
-
-// }
-
 
 export default function DogTable() {
   const [searchVal, setSearchVal] = useState(null);
